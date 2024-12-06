@@ -70,7 +70,8 @@ export class AppointmentsPage implements OnInit {
       },
       error: (err) => {
         console.error('Error booking appointment', err);
-        alert('Failed to book appointment. Please try again.');
+        const errorMessage = err.error.error;
+        alert(`Failed to book appointment. ${errorMessage}`);
       },
     });
   }

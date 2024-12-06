@@ -21,4 +21,8 @@ export class AppointmentService {
   bookAppointment(appointment: { barber_id: number; user_id: number; date: string; start_time: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/appointments`, appointment);
   }
+
+  getUserAppointments(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/appointments?user_id=${userId}`);
+  }
 }
