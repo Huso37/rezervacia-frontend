@@ -20,7 +20,7 @@ export class LoginPage {
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        // localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
         this.router.navigate(['/home']);
       },
       error: (err) => {

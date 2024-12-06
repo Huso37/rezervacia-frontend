@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Appointments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-datetime
+      [value]="selectedDate"
+      (ionChange)="onDateChange($event)"
+      presentation="date"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let time of appointments">
+        <ion-card  (click)="bookAppointment(time)">
+          <ion-card-content>
+            <div>{{ time }}</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

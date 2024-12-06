@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select a Barber</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let barber of barbers" (click)="selectBarber(barber.barber_id)">
+      <ion-label>{{ barber.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
