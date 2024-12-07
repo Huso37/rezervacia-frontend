@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { AppointmentService } from 'src/app/service/appointment.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -19,7 +20,8 @@ export class AppointmentsPage implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private appointmentService: AppointmentService,
-    private userService: UserService
+    private userService: UserService,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -34,7 +36,11 @@ export class AppointmentsPage implements OnInit {
   }
 
   fetchAppointments() {
-    console.log("hello fetch", this.barberId, this.selectedDate);
+    if (!this.isWeekday(this.selectedDate)) {
+      this.appointments = [];
+      return;
+    }
+
     this.appointmentService.getAppointments(this.barberId, this.selectedDate).subscribe({
       next: (data) => {
         const bookedTimes = data.map((a: any) => a.start_time.slice(0, 5));
@@ -44,14 +50,18 @@ export class AppointmentsPage implements OnInit {
       },
       error: (err) => {
         console.error('Error fetching appointments', err);
+        this.presentToast('Chyba pri načítavaní termínov!');
       },
     });
   }
 
-
   onDateChange(event: any) {
     this.selectedDate = event.detail.value.split('T')[0];
-    console.log("kkt", this.selectedDate = event.detail.value.split('T')[0]);
+    if (!this.isWeekday(this.selectedDate)) {
+      this.appointments = [];
+      return;
+    }
+  
     this.fetchAppointments();
   }
 
@@ -65,15 +75,29 @@ export class AppointmentsPage implements OnInit {
       start_time,
     }).subscribe({
       next: () => {
-        alert('Appointment booked successfully!');
+        this.presentToast('Úspešne zarezervovaný termín!');
         this.fetchAppointments();
+        this.appointmentService.setAppointmentAdded(true);
       },
       error: (err) => {
-        console.error('Error booking appointment', err);
         const errorMessage = err.error.error;
-        alert(`Failed to book appointment. ${errorMessage}`);
+        this.presentToast(`Neúspešne zarezervovaný termín! ${errorMessage}`);
       },
     });
   }
 
+  isWeekday(dateString: string): boolean {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+    return utcDay !== 0 && utcDay !== 6;
+  };
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom', 
+    });
+    toast.present();
+  }
 }

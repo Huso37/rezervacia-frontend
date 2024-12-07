@@ -8,25 +8,34 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content [fullscreen]="true">
 
-  <ion-item>
+  <ion-item class="custom-item">
     <ion-datetime
       [value]="selectedDate"
       (ionChange)="onDateChange($event)"
       presentation="date"
+      [isDateEnabled]="isWeekday"
+      [firstDayOfWeek]="1"
     ></ion-datetime>
   </ion-item>
+
+  <h2 class="head-title">Dostupné termíny</h2>
+
+  <ion-text *ngIf="!isWeekday(selectedDate)" color="danger" class="ion-text-center">
+    <h2>Cez víkend zatvorené!</h2>
+  </ion-text>
 
   <ion-grid>
     <ion-row>
       <ion-col size="4" *ngFor="let time of appointments">
-        <ion-card  (click)="bookAppointment(time)">
-          <ion-card-content>
+        <ion-card class="custom-card" (click)="bookAppointment(time)">
+          <ion-card-content class="center-content">
             <div>{{ time }}</div>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 export class AppointmentService {
 
   private baseUrl = 'https://Huso38.pythonanywhere.com'; 
+
+  private appointmentAdded = new BehaviorSubject<boolean>(false);
+  appointmentAdded$ = this.appointmentAdded.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -24,5 +27,13 @@ export class AppointmentService {
 
   getUserAppointments(userId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/user/appointments?user_id=${userId}`);
+  }
+
+  setAppointmentAdded(state: boolean) {
+    this.appointmentAdded.next(state);
+  }
+
+  getAppointmentAdded(): boolean {
+    return this.appointmentAdded.getValue();
   }
 }

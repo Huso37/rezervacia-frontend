@@ -19,12 +19,14 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.appointments = [];
     this.fetchUserAppointments();
   }
 
   ionViewWillEnter() {
-    this.fetchUserAppointments();
+    if (this.appointmentService.getAppointmentAdded()) {
+      this.fetchUserAppointments();
+      this.appointmentService.setAppointmentAdded(false);
+    }
   }
 
   fetchUserAppointments() {
@@ -32,7 +34,6 @@ export class HomePage implements OnInit {
 
     this.appointmentService.getUserAppointments(userId).subscribe({
       next: (data) => {
-        console.log('User appointments:', data);
         this.appointments = data;
       },
       error: (err) => {
@@ -46,7 +47,6 @@ export class HomePage implements OnInit {
   }
 
   logOut() {
-    this.appointments = [];
     this.userService.clearUser();
   }
   

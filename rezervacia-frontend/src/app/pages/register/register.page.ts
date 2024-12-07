@@ -32,25 +32,23 @@ export class RegisterPage {
       this.authService.register(this.registerForm.value).subscribe({
         next: (response) => {
           console.log('Registration successful', response);
-          alert('Registration complete! You can now log in.');
+          this.presentToast('Registrácia úspešná. Môžete sa prihlásíť');
           this.router.navigate(['/login']);
         },
         error: (err) => {
           console.error('Registration error', err);
           const errorMessage = err.error.error;
-          alert(`Failed to book appointment. ${errorMessage}`);
-          this.presentToast(err.error.message, 'danger');
+          this.presentToast(`Neúspešná registrácia. ${errorMessage}`);
         },
       });
     }
   }
 
-  async presentToast(message: string, color: string = 'danger') {
+  async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
       duration: 3000,
-      position: 'bottom',
-      color: color,
+      position: 'bottom', 
     });
     toast.present();
   }
