@@ -66,7 +66,6 @@ export class AppointmentsPage implements OnInit {
   }
 
   bookAppointment(start_time: string) {
-    console.log("kkt");
     const userId = this.userService.getUserId();
     this.appointmentService.bookAppointment({
       barber_id: this.barberId,
