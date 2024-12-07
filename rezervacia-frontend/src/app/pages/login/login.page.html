@@ -1,19 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title class="header-title">Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-  <form (ngSubmit)="login()">
-    <ion-item>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="email" [(ngModel)]="credentials.username" name="email" required></ion-input>
+  <form class="custom-group">
+    
+    <ion-input
+      class="custom-input" 
+      type="username" 
+      [(ngModel)]="credentials.username" 
+      name="username" 
+      required
+      size="large"
+      [label]="'Username'"
+      label-placement="floating"
+      fill="outline"
+    ></ion-input>
+  
+    <ion-input 
+      class="custom-input"
+      type="password" 
+      [(ngModel)]="credentials.password" 
+      name="password" 
+      required
+      size="large"
+      [label]="'Password'"
+      label-placement="floating"
+      fill="outline"
+    ></ion-input>
+
+    <ion-item button class="save-button" (click)="login()">
+      <span class="button-text">Login</span>
+      <ion-icon name="checkmark-outline" class="custom-icon"></ion-icon>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="credentials.password" name="password" required></ion-input>
-    </ion-item>
-    <ion-button expand="full" type="submit">Login</ion-button>
+
+    <span>Nemáš konto ? <a class="custom-register-line" (click)="goRegister()">Zaregistruj sa!</a> </span>
+
   </form>
 </ion-content>

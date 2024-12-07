@@ -1,0 +1,31 @@
+//header stuff
+
+ion-header, ion-toolbar {
+    --ion-shadow-color: transparent;
+    box-shadow: none;
+  }
+  
+ion-toolbar {
+    border-bottom: 2px solid black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    width: 100%;
+    font-size: 30px;
+    top: 15px;          
+}
+
+.custom-back-button {
+    color: rgb(0, 0, 0);
+}

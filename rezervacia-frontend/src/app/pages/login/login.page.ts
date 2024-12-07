@@ -30,4 +30,8 @@ export class LoginPage {
       }
     });
   }
+
+  goRegister() {
+    this.router.navigate(['/register']);
+  }
 }

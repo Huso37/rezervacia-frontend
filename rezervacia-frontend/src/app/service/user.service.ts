@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   getUser() {
     const user = localStorage.getItem('user');
@@ -19,6 +22,6 @@ export class UserService {
 
   clearUser() {
     localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

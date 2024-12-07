@@ -76,10 +76,4 @@ export class AppointmentsPage implements OnInit {
     });
   }
 
-  
-  getCardColor(time: string): string {
-    const appointment = this.appointments.find((a) => a.time === time);
-    return appointment?.status === 'booked' ? 'danger' : 'light';
-  }
-
 }

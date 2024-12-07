@@ -1,0 +1,99 @@
+//header stuff
+ion-header, ion-toolbar {
+    --ion-shadow-color: transparent;
+    box-shadow: none;
+  }
+  
+ion-toolbar {
+    border-bottom: 2px solid black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    width: 100%;
+    font-size: 30px;
+    top: 15px;          
+}
+
+.custom-back-button {
+    color: rgb(0, 0, 0);
+}
+
+//registration fields
+
+.custom-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding-top: 20px;
+}
+
+.custom-input {
+    width: 90%;
+    max-width: 600px;
+    margin: 12px auto;                 
+    
+    --border-width: 2px;       
+    --border-radius: 25px;              
+    --padding-start: 30px;
+    --border-color: #000000;
+  
+    height: 75px;
+    --min-height: 75px;
+  
+    font-size: 22px; 
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    margin: 0 15px;
+}
+
+//register btn
+.save-button {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px 0;
+    justify-content: center;
+    display: grid;
+    align-items: center;
+    background: #C7E6D4;
+    --background: transparent;
+    --inner-border-width: 0px;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    --ripple-color: transparent;
+}
+ 
+.custom-icon {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 25%;
+    margin-left: 8px;
+}
+
+.button-text {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.custom-register-line {
+    font-weight: bold;
+}

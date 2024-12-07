@@ -1,27 +1,83 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" class="custom-back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Registrácia</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="register()">
-    <ion-item>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" [(ngModel)]="user.username" name="username" required></ion-input>
+  <form [formGroup]="registerForm" class="custom-group">
+    <!-- Username -->
+
+    <ion-input
+      class="custom-input" 
+      type="username" 
+      name="username" 
+      size="large"
+      [label]="'Username'"
+      label-placement="floating"
+      fill="outline"
+      formControlName="username"
+    ></ion-input> 
+
+    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error-message">
+      Username is required and must be at least 3 characters long.
+    </div>
+
+    <!-- Email -->
+    <ion-input
+      class="custom-input" 
+      type="email" 
+      name="email" 
+      size="large"
+      [label]="'Email'"
+      label-placement="floating"
+      fill="outline"
+      formControlName="email"
+    ></ion-input> 
+
+
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+      A valid email is required.
+    </div>
+
+    <!-- Phone -->
+    <ion-input
+      class="custom-input" 
+      type="tel" 
+      name="tel" 
+      size="large"
+      [label]="'Phone number'"
+      label-placement="floating"
+      fill="outline"
+      formControlName="phone"
+    ></ion-input> 
+
+    <div  *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched" class="error-message">
+      Phone number must be between 10 and 15 digits.
+    </div>
+
+    <!-- Password -->
+    <ion-input
+      class="custom-input" 
+      type="password" 
+      name="password" 
+      size="large"
+      [label]="'Password'"
+      label-placement="floating"
+      fill="outline"
+      formControlName="password"
+    ></ion-input> 
+
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+      Password is required and must be at least 6 characters long.
+    </div>
+
+    <ion-item button class="save-button" (click)="register()" [disabled]="registerForm.invalid">
+      <span class="button-text">Login</span>
+      <ion-icon name="checkmark-outline" class="custom-icon"></ion-icon>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email" name="email" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Phone</ion-label>
-      <ion-input type="tel" [(ngModel)]="user.phone" name="phone" required></ion-input>
-    </ion-item>
-    <ion-button expand="full" type="submit">Register</ion-button>
   </form>
 </ion-content>

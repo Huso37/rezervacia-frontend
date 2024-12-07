@@ -1,0 +1,99 @@
+//header stuff
+
+ion-header, ion-toolbar {
+    --ion-shadow-color: transparent;
+    box-shadow: none;
+  }
+  
+ion-toolbar {
+    border-bottom: 2px solid black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    width: 100%;
+    font-size: 30px;
+    top: 15px;          
+}
+
+//content
+.custom-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding-top: 20px;
+}
+
+.head-title {
+    font-weight: bold;
+}
+
+.custom-item {
+    width: 90%;
+    max-width: 600px;
+    margin: 12px auto;                 
+    
+    --border-width: 2px;       
+    --border-radius: 25px;              
+    --padding-start: 30px;
+    --border-color: #000000;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #000000;
+}
+
+//btn
+.save-button {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px 0;
+    justify-content: center;
+    display: grid;
+    align-items: center;
+    background: #C7E6D4;
+    --background: transparent;
+    --inner-border-width: 0px;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    --ripple-color: transparent;
+}
+
+.button-text {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+
+.save-button-2 {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px 0;
+    justify-content: center;
+    display: grid;
+    align-items: center;
+    background: #ff6767;
+    --background: transparent;
+    --inner-border-width: 0px;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    --ripple-color: transparent;
+}

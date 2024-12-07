@@ -1,18 +1,28 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title class="header-title">Barbershop u Eda</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item *ngFor="let appointment of appointments">
+  <ion-list class="custom-group">
+    <h2 class="head-title">Rezervované termíny</h2>
+    <ion-item *ngFor="let appointment of appointments" class="custom-item">
       <ion-label>
-        <h2>{{ appointment.barber_name }}</h2>
-        <p>Date: {{ appointment.date }}</p>
-        <p>Time: {{ appointment.start_time }}</p>
+        <h2 class="title">{{ appointment.barber_name }}</h2>
+        <p class="subtitle">Date: {{ appointment.date }}</p>
+        <p class="subtitle">Time: {{ appointment.start_time }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
-  
+
+  <ion-item button class="save-button" (click)="goBarber()">
+    <span class="button-text">Rezervovať ďalší termín</span>
+  </ion-item>
+
+  <ion-item button class="save-button-2" (click)="logOut()">
+    <span class="button-text">Odhlásiť sa</span>
+  </ion-item>
+
 </ion-content>

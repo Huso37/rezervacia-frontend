@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppointmentService } from 'src/app/service/appointment.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -13,20 +14,21 @@ export class HomePage implements OnInit {
 
   constructor(
     private appointmentService: AppointmentService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    // this.appointments = [];
+    this.fetchUserAppointments();
+  }
+
+  ionViewWillEnter() {
     this.fetchUserAppointments();
   }
 
   fetchUserAppointments() {
     const userId = this.userService.getUserId();
-
-    if (!userId) {
-      console.error('User ID not found!');
-      return;
-    }
 
     this.appointmentService.getUserAppointments(userId).subscribe({
       next: (data) => {
@@ -37,6 +39,15 @@ export class HomePage implements OnInit {
         console.error('Error fetching user appointments:', err);
       },
     });
+  }
+
+  goBarber() {
+    this.router.navigate(['/barbers']);
+  }
+
+  logOut() {
+    this.appointments = [];
+    this.userService.clearUser();
   }
   
 }
